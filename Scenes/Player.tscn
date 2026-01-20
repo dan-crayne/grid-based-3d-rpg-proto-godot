@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwxtvhlvxh0nh"]
+
+[ext_resource type="Script" uid="uid://bapcbck8pdmrm" path="res://Scenes/player.gd" id="1_rpqav"]
+
+[sub_resource type="Animation" id="Animation_kyqiw"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_rpqav"]
+resource_name = "headbob"
+length = 0.3
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.1, 1, 0, 0.05, 0, 0.2, 1, 0, -0.05, 0, 0.3, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gntrk"]
+_data = {
+&"RESET": SubResource("Animation_kyqiw"),
+&"headbob": SubResource("Animation_rpqav")
+}
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_rpqav")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="FrontRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -2)
+
+[node name="BackRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 2)
+
+[node name="LeftRay" type="RayCast3D" parent="."]
+target_position = Vector3(-2, 0, 0)
+
+[node name="RightRay" type="RayCast3D" parent="."]
+target_position = Vector3(2, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gntrk")
+}
