@@ -20,6 +20,9 @@ camera_attributes = SubResource("CameraAttributesPhysical_svdv8")
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -2)
+
 [node name="Blocks" type="Node3D" parent="."]
 
 [node name="LevelBlock" type="Node3D" parent="Blocks"]
