@@ -155,8 +155,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 script = ExtResource("1_c76gt")
 material = ExtResource("2_202mj")
 texture_sheet = ExtResource("3_f5cwi")
-west_face = 0
-top_face = 5
+west_face = 9
+top_face = 4
 bottom_face = 4
 metadata/_custom_type_script = "uid://dysrpgxjl486q"
 
@@ -195,8 +195,8 @@ script = ExtResource("1_c76gt")
 material = ExtResource("2_202mj")
 texture_sheet = ExtResource("3_f5cwi")
 north_face = 0
-west_face = 0
-top_face = 5
+west_face = 9
+top_face = 4
 bottom_face = 4
 metadata/_custom_type_script = "uid://dysrpgxjl486q"
 
