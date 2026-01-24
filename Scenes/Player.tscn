@@ -33,6 +33,7 @@ _data = {
 script = ExtResource("1_rpqav")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+current = true
 
 [node name="FrontRay" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -2)

@@ -1,19 +1,57 @@
-[gd_scene load_steps=7 format=3 uid="uid://di5ujt06s34gb"]
+[gd_scene load_steps=10 format=3 uid="uid://di5ujt06s34gb"]
 
+[ext_resource type="PackedScene" uid="uid://st3hngy2cbtd" path="res://Scenes/NavigationNPC.tscn" id="1_202mj"]
 [ext_resource type="Script" uid="uid://dysrpgxjl486q" path="res://addons/level_block/level_block_node.gd" id="1_c76gt"]
 [ext_resource type="Material" uid="uid://c71yladfjhgud" path="res://addons/level_block/default_material.tres" id="2_202mj"]
 [ext_resource type="Texture2D" uid="uid://dul4gcwu55m0b" path="res://addons/level_block/example_tileset.png" id="3_f5cwi"]
 [ext_resource type="PackedScene" uid="uid://dwxtvhlvxh0nh" path="res://Scenes/Player.tscn" id="4_74cyf"]
 
 [sub_resource type="Environment" id="Environment_nuxf3"]
+glow_enabled = true
+glow_hdr_scale = 0.0
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_svdv8"]
+
+[sub_resource type="Curve3D" id="Curve3D_202mj"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 1, -6, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, 3, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_c76gt"]
+vertices = PackedVector3Array(-2.815298, 0.5, -6.316147, -2.815298, 0.5, 2.6838531, 6.184702, 0.5, 2.6838531, 6.184702, 0.5, -6.316147)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 0
 
 [node name="Level" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nuxf3")
 camera_attributes = SubResource("CameraAttributesPhysical_svdv8")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_202mj")
+debug_custom_color = Color(0.3515551, 0.80407494, 0.9014113, 1)
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6, 0, 1)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.428234, -1, -0.1)
+navigation_mesh = SubResource("NavigationMesh_c76gt")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6847019, -0.5, -1.8161469)
+visible = false
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="NavigationNPC" parent="NavigationRegion3D" instance=ExtResource("1_202mj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+axis_lock_linear_y = true
+axis_lock_angular_y = true
+motion_mode = 1
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -83,7 +121,7 @@ bottom_face = 4
 metadata/_custom_type_script = "uid://dysrpgxjl486q"
 
 [node name="LevelBlock7" type="Node3D" parent="Blocks"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.7683716e-07, -2)
 script = ExtResource("1_c76gt")
 material = ExtResource("2_202mj")
 texture_sheet = ExtResource("3_f5cwi")
@@ -105,7 +143,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
 script = ExtResource("1_c76gt")
 material = ExtResource("2_202mj")
 texture_sheet = ExtResource("3_f5cwi")
-west_face = 0
 top_face = 5
 bottom_face = 4
 metadata/_custom_type_script = "uid://dysrpgxjl486q"
@@ -116,7 +153,6 @@ script = ExtResource("1_c76gt")
 material = ExtResource("2_202mj")
 texture_sheet = ExtResource("3_f5cwi")
 south_face = 0
-west_face = 0
 top_face = 5
 bottom_face = 4
 metadata/_custom_type_script = "uid://dysrpgxjl486q"
@@ -136,7 +172,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 script = ExtResource("1_c76gt")
 material = ExtResource("2_202mj")
 texture_sheet = ExtResource("3_f5cwi")
-west_face = 0
 top_face = 5
 bottom_face = 4
 metadata/_custom_type_script = "uid://dysrpgxjl486q"
@@ -155,7 +190,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 script = ExtResource("1_c76gt")
 material = ExtResource("2_202mj")
 texture_sheet = ExtResource("3_f5cwi")
-west_face = 9
 top_face = 4
 bottom_face = 4
 metadata/_custom_type_script = "uid://dysrpgxjl486q"
@@ -191,6 +225,104 @@ metadata/_custom_type_script = "uid://dysrpgxjl486q"
 
 [node name="LevelBlock18" type="Node3D" parent="Blocks"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+north_face = 0
+top_face = 4
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock65" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+top_face = 5
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock66" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+south_face = 0
+top_face = 5
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock67" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+top_face = 5
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock68" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+top_face = 5
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock69" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+north_face = 0
+top_face = 5
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock70" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -2)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+west_face = 0
+top_face = 5
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock71" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+south_face = 0
+west_face = 0
+top_face = 5
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock72" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+west_face = 0
+top_face = 5
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock73" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
+script = ExtResource("1_c76gt")
+material = ExtResource("2_202mj")
+texture_sheet = ExtResource("3_f5cwi")
+west_face = 9
+top_face = 4
+bottom_face = 4
+metadata/_custom_type_script = "uid://dysrpgxjl486q"
+
+[node name="LevelBlock74" type="Node3D" parent="Blocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -6)
 script = ExtResource("1_c76gt")
 material = ExtResource("2_202mj")
 texture_sheet = ExtResource("3_f5cwi")
