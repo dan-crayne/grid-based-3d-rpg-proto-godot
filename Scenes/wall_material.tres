@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cnlfstxmxj0dw"]
+
+[ext_resource type="Texture2D" uid="uid://boft5fly6cjfq" path="res://art/wall.png" id="1_xhb27"]
+
+[resource]
+albedo_texture = ExtResource("1_xhb27")
+heightmap_scale = 16.0
+uv1_triplanar = true
+texture_filter = 0

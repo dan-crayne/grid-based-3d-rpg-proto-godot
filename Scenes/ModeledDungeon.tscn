@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://c71yladfjhgud" path="res://addons/level_block/default_material.tres" id="1_6wvep"]
 [ext_resource type="PackedScene" uid="uid://dwxtvhlvxh0nh" path="res://Scenes/Player.tscn" id="1_u7nd2"]
+[ext_resource type="Material" uid="uid://cnlfstxmxj0dw" path="res://Scenes/wall_material.tres" id="3_bid71"]
 
 [sub_resource type="Environment" id="Environment_y61iq"]
 background_color = Color(0.83889705, 0.83889705, 0.838897, 1)
@@ -16,6 +17,7 @@ size = Vector3(2, 0.2, 2)
 size = Vector3(2, 0.2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6wvep"]
+material = ExtResource("3_bid71")
 size = Vector3(2, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y61iq"]
@@ -140,7 +142,7 @@ shape = SubResource("BoxShape3D_y61iq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GridSegment3/Wall2" unique_id=801867916]
-material_override = ExtResource("1_6wvep")
+material_override = ExtResource("3_bid71")
 mesh = SubResource("BoxMesh_6wvep")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="GridSegment3/Wall2/MeshInstance3D" unique_id=1979009223]
