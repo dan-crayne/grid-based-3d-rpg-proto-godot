@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b4i7bjlxy85s1"]
+
+[ext_resource type="Texture2D" uid="uid://tkmwp7fu3723" path="res://art/nicoles-dungeon-tiles/dungeon-tiles7.png" id="1_i4cg3"]
+
+[resource]
+albedo_texture = ExtResource("1_i4cg3")
+uv1_triplanar = true

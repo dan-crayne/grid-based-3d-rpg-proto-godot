@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://2tyq8rn1i8ld"]
+
+[ext_resource type="Script" uid="uid://b5ublx0j025dv" path="res://scripts/grid_segment.gd" id="1_6mbwi"]
+[ext_resource type="Material" uid="uid://bawirbnf5bldk" path="res://art/materials/floor_material.tres" id="1_gdg0h"]
+[ext_resource type="Material" uid="uid://cnlfstxmxj0dw" path="res://art/materials/wall_material.tres" id="3_img8b"]
+[ext_resource type="Material" uid="uid://b4i7bjlxy85s1" path="res://art/materials/ceiling_material.tres" id="3_texlt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y61iq"]
+material = ExtResource("3_texlt")
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6wvep"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6wvep"]
+material = ExtResource("3_img8b")
+size = Vector3(2, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y61iq"]
+size = Vector3(2, 3, 0.2)
+
+[node name="GridSegment" type="Node3D" unique_id=1776957072]
+script = ExtResource("1_6mbwi")
+ceiling_height = 3
+wall_material = ExtResource("3_img8b")
+
+[node name="Floor" type="Node3D" parent="." unique_id=2030668608]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1955367875]
+material_override = ExtResource("1_gdg0h")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor/MeshInstance3D" unique_id=658825426]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/MeshInstance3D/StaticBody3D" unique_id=456955103]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="Ceiling" type="Node3D" parent="." unique_id=298994327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ceiling" unique_id=1445462603]
+material_override = ExtResource("3_texlt")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ceiling/MeshInstance3D" unique_id=163215709]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling/MeshInstance3D/StaticBody3D" unique_id=1112715926]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="WallSouth" type="Node3D" parent="." unique_id=1093465673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallSouth" unique_id=2140783992]
+material_override = ExtResource("3_img8b")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallSouth/MeshInstance3D" unique_id=1790521116]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallSouth/MeshInstance3D/StaticBody3D" unique_id=1278968946]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="WallNorth" type="Node3D" parent="." unique_id=1937781104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallNorth" unique_id=1125328155]
+material_override = ExtResource("3_img8b")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallNorth/MeshInstance3D" unique_id=609324934]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallNorth/MeshInstance3D/StaticBody3D" unique_id=1837908443]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="WallEast" type="Node3D" parent="." unique_id=823383399]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 1.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallEast" unique_id=404583767]
+material_override = ExtResource("3_img8b")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallEast/MeshInstance3D" unique_id=464457616]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallEast/MeshInstance3D/StaticBody3D" unique_id=1900319621]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="WallWest" type="Node3D" parent="." unique_id=1279342242]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 1.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallWest" unique_id=947631192]
+material_override = ExtResource("3_img8b")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallWest/MeshInstance3D" unique_id=1206021374]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallWest/MeshInstance3D/StaticBody3D" unique_id=1426869907]
+shape = SubResource("BoxShape3D_y61iq")

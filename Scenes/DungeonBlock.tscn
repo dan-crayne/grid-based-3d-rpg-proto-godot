@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://vrxnt76qcuuf"]
+
+[ext_resource type="Material" uid="uid://bawirbnf5bldk" path="res://art/materials/floor_material.tres" id="1_tnmbn"]
+[ext_resource type="Material" uid="uid://b4i7bjlxy85s1" path="res://art/materials/ceiling_material.tres" id="2_hurqb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bsr8e"]
+material = ExtResource("2_hurqb")
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8s85c"]
+size = Vector3(2, 0.2, 2)
+
+[node name="DungeonBlock" type="Node3D" unique_id=1737795748]
+
+[node name="Floor" type="Node3D" parent="." unique_id=1830130671]
+transform = Transform3D(1, 0, 0, 0, 17.39, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=728789639]
+material_override = ExtResource("1_tnmbn")
+mesh = SubResource("BoxMesh_bsr8e")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor/MeshInstance3D" unique_id=2026142952]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/MeshInstance3D/StaticBody3D" unique_id=1204664263]
+shape = SubResource("BoxShape3D_8s85c")

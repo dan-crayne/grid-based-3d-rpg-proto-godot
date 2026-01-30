@@ -1,0 +1,541 @@
+[gd_scene format=3 uid="uid://bq6gsyaqn4a2d"]
+
+[ext_resource type="PackedScene" uid="uid://dwxtvhlvxh0nh" path="res://Scenes/Player.tscn" id="1_ni5em"]
+[ext_resource type="PackedScene" uid="uid://2tyq8rn1i8ld" path="res://Scenes/GridSegment.tscn" id="2_6kfj4"]
+[ext_resource type="Material" uid="uid://bawirbnf5bldk" path="res://art/materials/floor_material.tres" id="3_8gfps"]
+[ext_resource type="Material" uid="uid://c71yladfjhgud" path="res://addons/level_block/default_material.tres" id="4_pr4th"]
+[ext_resource type="Material" uid="uid://cnlfstxmxj0dw" path="res://art/materials/wall_material.tres" id="5_x8txv"]
+
+[sub_resource type="Environment" id="Environment_y61iq"]
+background_color = Color(0.83889705, 0.83889705, 0.838897, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.8217887, 0.82178867, 0.82178867, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y61iq"]
+material = ExtResource("4_pr4th")
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6wvep"]
+size = Vector3(2, 0.2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6wvep"]
+material = ExtResource("5_x8txv")
+size = Vector3(2, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y61iq"]
+size = Vector3(2, 3, 0.2)
+
+[node name="TestMultimesh" type="Node3D" unique_id=345958258]
+
+[node name="Player" parent="." unique_id=1010200095 instance=ExtResource("1_ni5em")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11, 1, -16)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=980605453]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 10, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1532021273]
+transform = Transform3D(-0.75558674, -0.362185, 0.54581195, 0.08177072, 0.77456987, 0.6271803, -0.64992476, 0.51852053, -0.5556386, 7, 4, -2)
+visible = false
+fov = 77.1125
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1593323470]
+environment = SubResource("Environment_y61iq")
+
+[node name="OldRoom" type="Node3D" parent="." unique_id=438655940]
+
+[node name="GridSegment" parent="OldRoom" unique_id=1776957072 instance=ExtResource("2_6kfj4")]
+
+[node name="GridSegment2" type="Node3D" parent="OldRoom" unique_id=467565443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Floor" type="Node3D" parent="OldRoom/GridSegment2" unique_id=915700284]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment2/Floor" unique_id=1038028900]
+material_override = ExtResource("3_8gfps")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment2/Floor/MeshInstance3D" unique_id=1218713396]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment2/Floor/MeshInstance3D/StaticBody3D" unique_id=1423416386]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="Ceiling4" type="Node3D" parent="OldRoom/GridSegment2" unique_id=1738097703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment2/Ceiling4" unique_id=677999675]
+material_override = ExtResource("3_8gfps")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment2/Ceiling4/MeshInstance3D" unique_id=430128385]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment2/Ceiling4/MeshInstance3D/StaticBody3D" unique_id=1363438385]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="Wall" type="Node3D" parent="OldRoom/GridSegment2" unique_id=1904831580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1)
+
+[node name="Wall2" type="Node3D" parent="OldRoom/GridSegment2" unique_id=909366372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment2/Wall2" unique_id=599479823]
+material_override = ExtResource("5_x8txv")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment2/Wall2/MeshInstance3D" unique_id=1961690593]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment2/Wall2/MeshInstance3D/StaticBody3D" unique_id=55130547]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="GridSegment3" type="Node3D" parent="OldRoom" unique_id=1078275135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="Floor" type="Node3D" parent="OldRoom/GridSegment3" unique_id=1799491587]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment3/Floor" unique_id=1919383818]
+material_override = ExtResource("3_8gfps")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment3/Floor/MeshInstance3D" unique_id=441938717]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment3/Floor/MeshInstance3D/StaticBody3D" unique_id=1656184669]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="Ceiling3" type="Node3D" parent="OldRoom/GridSegment3" unique_id=445011284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment3/Ceiling3" unique_id=1744077030]
+material_override = ExtResource("3_8gfps")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment3/Ceiling3/MeshInstance3D" unique_id=1929095711]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment3/Ceiling3/MeshInstance3D/StaticBody3D" unique_id=1164966114]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="Wall" type="Node3D" parent="OldRoom/GridSegment3" unique_id=1611261174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment3/Wall" unique_id=166973831]
+material_override = ExtResource("5_x8txv")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment3/Wall/MeshInstance3D" unique_id=1245435489]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment3/Wall/MeshInstance3D/StaticBody3D" unique_id=1452523972]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="Wall2" type="Node3D" parent="OldRoom/GridSegment3" unique_id=232192861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment3/Wall2" unique_id=801867916]
+material_override = ExtResource("5_x8txv")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment3/Wall2/MeshInstance3D" unique_id=1979009223]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment3/Wall2/MeshInstance3D/StaticBody3D" unique_id=143387864]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="GridSegment4" type="Node3D" parent="OldRoom" unique_id=926172878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Floor" type="Node3D" parent="OldRoom/GridSegment4" unique_id=1227237971]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment4/Floor" unique_id=666241800]
+material_override = ExtResource("3_8gfps")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment4/Floor/MeshInstance3D" unique_id=632406401]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment4/Floor/MeshInstance3D/StaticBody3D" unique_id=500706497]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="Ceiling2" type="Node3D" parent="OldRoom/GridSegment4" unique_id=1873110237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment4/Ceiling2" unique_id=789739070]
+transform = Transform3D(0.9063077, 0.42261824, 0, -0.42261824, 0.9063077, 0, 0, 0, 1, 0, 0.5999999, 0)
+material_override = ExtResource("3_8gfps")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment4/Ceiling2/MeshInstance3D" unique_id=1778646598]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment4/Ceiling2/MeshInstance3D/StaticBody3D" unique_id=1450540433]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="Wall" type="Node3D" parent="OldRoom/GridSegment4" unique_id=481962503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1)
+
+[node name="Wall4" type="Node3D" parent="OldRoom/GridSegment4" unique_id=2135203989]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 1.5, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment4/Wall4" unique_id=1325927308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+material_override = ExtResource("5_x8txv")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment4/Wall4/MeshInstance3D" unique_id=65105748]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment4/Wall4/MeshInstance3D/StaticBody3D" unique_id=2040675234]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="Wall2" type="Node3D" parent="OldRoom/GridSegment4" unique_id=892907676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment4/Wall2" unique_id=1858515417]
+material_override = ExtResource("5_x8txv")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment4/Wall2/MeshInstance3D" unique_id=968331798]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment4/Wall2/MeshInstance3D/StaticBody3D" unique_id=1002119967]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="GridSegment5" type="Node3D" parent="OldRoom" unique_id=138180845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="Floor" type="Node3D" parent="OldRoom/GridSegment5" unique_id=651054487]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment5/Floor" unique_id=1498133867]
+material_override = ExtResource("3_8gfps")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment5/Floor/MeshInstance3D" unique_id=1977248477]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment5/Floor/MeshInstance3D/StaticBody3D" unique_id=1008547298]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="Ceiling" type="Node3D" parent="OldRoom/GridSegment5" unique_id=2120087643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment5/Ceiling" unique_id=1701109904]
+material_override = ExtResource("3_8gfps")
+mesh = SubResource("BoxMesh_y61iq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment5/Ceiling/MeshInstance3D" unique_id=1377744860]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment5/Ceiling/MeshInstance3D/StaticBody3D" unique_id=664236724]
+shape = SubResource("BoxShape3D_6wvep")
+
+[node name="Wall" type="Node3D" parent="OldRoom/GridSegment5" unique_id=1099533905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment5/Wall" unique_id=455649380]
+material_override = ExtResource("5_x8txv")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment5/Wall/MeshInstance3D" unique_id=78826425]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment5/Wall/MeshInstance3D/StaticBody3D" unique_id=30796147]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="Wall3" type="Node3D" parent="OldRoom/GridSegment5" unique_id=2074664930]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 1.5, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldRoom/GridSegment5/Wall3" unique_id=944201298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+material_override = ExtResource("5_x8txv")
+mesh = SubResource("BoxMesh_6wvep")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OldRoom/GridSegment5/Wall3/MeshInstance3D" unique_id=98794019]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OldRoom/GridSegment5/Wall3/MeshInstance3D/StaticBody3D" unique_id=2000528475]
+shape = SubResource("BoxShape3D_y61iq")
+
+[node name="Wall2" type="Node3D" parent="OldRoom/GridSegment5" unique_id=935205327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+
+[node name="NewRoom" type="Node3D" parent="." unique_id=40140881]
+
+[node name="GridSegment7" parent="NewRoom" unique_id=113220216 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 1)
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment8" parent="NewRoom" unique_id=1575205804 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 1)
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment9" parent="NewRoom" unique_id=57911502 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 1)
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment10" parent="NewRoom" unique_id=1799607189 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
+include_south_wall = false
+include_west_wall = false
+
+[node name="GridSegment11" parent="NewRoom" unique_id=1575807268 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
+include_north_wall = false
+include_south_wall = false
+include_west_wall = false
+
+[node name="GridSegment12" parent="NewRoom" unique_id=479507916 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
+include_north_wall = false
+include_south_wall = false
+include_west_wall = false
+
+[node name="GridSegment13" parent="NewRoom" unique_id=1597088949 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
+include_north_wall = false
+include_west_wall = false
+
+[node name="GridSegment14" parent="NewRoom" unique_id=225607965 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 3)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment15" parent="NewRoom" unique_id=795427598 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 5)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment16" parent="NewRoom" unique_id=33016521 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 7)
+include_north_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment17" parent="NewRoom" unique_id=1608656067 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 3)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment18" parent="NewRoom" unique_id=1554921747 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 5)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment19" parent="NewRoom" unique_id=667374556 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 7)
+include_north_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment20" parent="NewRoom" unique_id=1440743558 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 3)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment21" parent="NewRoom" unique_id=1317718404 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 5)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment22" parent="NewRoom" unique_id=351472039 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 7)
+include_north_wall = false
+include_east_wall = false
+
+[node name="GridSegment23" parent="NewRoom" unique_id=562108509 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 3)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment24" parent="NewRoom" unique_id=405127840 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 5)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment25" parent="NewRoom" unique_id=1555513939 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 7)
+include_north_wall = false
+include_east_wall = false
+
+[node name="GridSegment26" parent="NewRoom" unique_id=1245575754 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 1)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NewRoom" unique_id=640420690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 1)
+light_color = Color(0.9999997, 0.8304773, 0.66194844, 1)
+light_energy = 3.173
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="NewRoom" unique_id=796278023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 3)
+light_color = Color(0.9999997, 0.8304773, 0.66194844, 1)
+light_energy = 3.173
+
+[node name="Node3D" type="Node3D" parent="." unique_id=159873316]
+
+[node name="GridSegment27" parent="Node3D" unique_id=660235912 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -12)
+
+[node name="GridSegment28" parent="Node3D" unique_id=224666886 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -18)
+
+[node name="GridSegment29" parent="Node3D" unique_id=1725848652 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -16)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment38" parent="Node3D" unique_id=1952288831 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -14)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment39" parent="Node3D" unique_id=1319658544 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -14)
+
+[node name="GridSegment40" parent="Node3D" unique_id=286817523 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -12)
+
+[node name="GridSegment41" parent="Node3D" unique_id=657264324 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -16)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment42" parent="Node3D" unique_id=1112762968 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -16)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment43" parent="Node3D" unique_id=1782712984 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -14)
+
+[node name="GridSegment44" parent="Node3D" unique_id=941136988 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -12)
+
+[node name="GridSegment30" parent="Node3D" unique_id=568877155 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -18)
+
+[node name="GridSegment31" parent="Node3D" unique_id=1621315555 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -14)
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment32" parent="Node3D" unique_id=740475020 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -18)
+
+[node name="GridSegment33" parent="Node3D" unique_id=1748093824 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -18)
+
+[node name="GridSegment34" parent="Node3D" unique_id=822703082 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -12)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment45" parent="Node3D" unique_id=1823950707 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -10)
+
+[node name="GridSegment46" parent="Node3D" unique_id=568250073 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -10)
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment47" parent="Node3D" unique_id=2078152570 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -10)
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment48" parent="Node3D" unique_id=490968140 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -10)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment49" parent="Node3D" unique_id=540846170 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -8)
+
+[node name="GridSegment50" parent="Node3D" unique_id=1145541097 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -8)
+
+[node name="GridSegment51" parent="Node3D" unique_id=1538393299 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -8)
+
+[node name="GridSegment52" parent="Node3D" unique_id=991261330 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -8)
+include_north_wall = false
+include_west_wall = false
+
+[node name="GridSegment35" parent="Node3D" unique_id=1588202140 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -18)
+
+[node name="GridSegment53" parent="Node3D" unique_id=811522164 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -16)
+include_north_wall = false
+include_south_wall = false
+include_east_wall = false
+include_west_wall = false
+
+[node name="GridSegment54" parent="Node3D" unique_id=948626133 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -14)
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment55" parent="Node3D" unique_id=728487700 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -12)
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment56" parent="Node3D" unique_id=1624109239 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -10)
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment57" parent="Node3D" unique_id=1930482483 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -8)
+
+[node name="GridSegment58" parent="Node3D" unique_id=1904502680 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -18)
+
+[node name="GridSegment59" parent="Node3D" unique_id=1366383454 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -16)
+include_north_wall = false
+include_west_wall = false
+
+[node name="GridSegment60" parent="Node3D" unique_id=865652269 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -14)
+
+[node name="GridSegment61" parent="Node3D" unique_id=110246168 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -12)
+include_south_wall = false
+include_east_wall = false
+
+[node name="GridSegment62" parent="Node3D" unique_id=1675216106 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -10)
+
+[node name="GridSegment63" parent="Node3D" unique_id=1682902204 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -8)
+
+[node name="GridSegment64" parent="Node3D" unique_id=118890476 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -18)
+
+[node name="GridSegment36" parent="Node3D" unique_id=557925299 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -18)
+
+[node name="GridSegment37" parent="Node3D" unique_id=1847406237 instance=ExtResource("2_6kfj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -16)

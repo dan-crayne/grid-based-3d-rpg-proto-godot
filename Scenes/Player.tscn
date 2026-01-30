@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwxtvhlvxh0nh"]
+[gd_scene format=3 uid="uid://dwxtvhlvxh0nh"]
 
-[ext_resource type="Script" uid="uid://bapcbck8pdmrm" path="res://Scenes/player.gd" id="1_rpqav"]
+[ext_resource type="Script" uid="uid://bapcbck8pdmrm" path="res://scripts/player.gd" id="1_rpqav"]
 
 [sub_resource type="Animation" id="Animation_kyqiw"]
 length = 0.001
@@ -29,27 +29,25 @@ _data = {
 &"headbob": SubResource("Animation_rpqav")
 }
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" unique_id=1416334045]
 script = ExtResource("1_rpqav")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1618346479]
 current = true
 
-[node name="FrontRay" type="RayCast3D" parent="."]
+[node name="FrontRay" type="RayCast3D" parent="." unique_id=1920039904]
 target_position = Vector3(0, 0, -2)
 
-[node name="BackRay" type="RayCast3D" parent="."]
+[node name="BackRay" type="RayCast3D" parent="." unique_id=1728198176]
 target_position = Vector3(0, 0, 2)
 
-[node name="LeftRay" type="RayCast3D" parent="."]
+[node name="LeftRay" type="RayCast3D" parent="." unique_id=1647434957]
 target_position = Vector3(-2, 0, 0)
 
-[node name="RightRay" type="RayCast3D" parent="."]
+[node name="RightRay" type="RayCast3D" parent="." unique_id=1006343076]
 target_position = Vector3(2, 0, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1906023819]
 
-[node name="Animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_gntrk")
-}
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1168198385]
+libraries/ = SubResource("AnimationLibrary_gntrk")
